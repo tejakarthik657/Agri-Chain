@@ -4,9 +4,9 @@ import ThreeDHoverGallery from '../components/ThreeDHoverGallery';
 
 const galleryImages = [
   "https://i.pinimg.com/736x/b5/03/84/b503840363eb5a4d5807a4d5d09cacae.jpg",
-  "https://i.pinimg.com/736x/bb/fd/f4/bbfdf4d772149ffa19f74c0d989ad97b.jpg",
-  "https://i.pinimg.com/736x/a8/ca/0f/a8ca0fd6894db828c12767afb4f3e2f1.jpg",
-  "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://i.pinimg.com/1200x/37/4b/18/374b184407081184837de603b9e94873.jpg",
+  "https://i.pinimg.com/1200x/fa/c4/7e/fac47e3245a0e93aa042bcc22c2e76ae.jpg",
+  "https://i.pinimg.com/736x/a5/c8/32/a5c832897eeff23edc7764af5a23c580.jpg",
 ];
 
 const linkPaths = ['farmers', 'logistics', 'retailers', 'customers'];
