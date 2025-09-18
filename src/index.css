@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin 'lightswind/plugin';
+/* Page Styles */
+.landing-page {
+@apply min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white;
+}
+.login-page {
+@apply min-h-screen flex flex-col items-center justify-center bg-gray-100;
+}
+.login-page form {
+@apply bg-white p-8 rounded-lg shadow-md w-full max-w-md;
+}
+.login-page label {
+@apply block mb-4;
+}
+.login-page input {
+@apply w-full p-2 border border-gray-300 rounded mb-2;
+}
+.login-page button {
+@apply w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600;
+}
+.customers-page {
+@apply min-h-screen p-8 bg-white;
+}
+.customers-page ul {
+@apply list-disc list-inside;
+}
