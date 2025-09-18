@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import ThreeDHoverGallery from '../components/ThreeDHoverGallery';
 
 const galleryImages = [
-  "https://i.pinimg.com/1200x/c8/6a/13/c86a13beec6eedf10e6e5c68d772a2f4.jpg",
-  "https://i.pinimg.com/1200x/6b/40/fd/6b40fd8edce2a87025cf86e1201f6257.jpg",
+  "https://i.pinimg.com/736x/b5/03/84/b503840363eb5a4d5807a4d5d09cacae.jpg",
+  "https://i.pinimg.com/736x/bb/fd/f4/bbfdf4d772149ffa19f74c0d989ad97b.jpg",
   "https://i.pinimg.com/736x/a8/ca/0f/a8ca0fd6894db828c12767afb4f3e2f1.jpg",
   "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 ];
