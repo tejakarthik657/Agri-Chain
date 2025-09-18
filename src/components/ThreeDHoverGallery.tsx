@@ -3,6 +3,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 
 export interface ThreeDHoverGalleryProps {
   images?: string[];
+  labels?: string[]; // <-- ADD THIS LINE
   itemWidth?: number;
   itemHeight?: number;
   gap?: number;
@@ -56,6 +57,7 @@ const ThreeDHoverGallery: React.FC<ThreeDHoverGalleryProps> = ({
   onImageClick,
   onImageHover,
   onImageFocus,
+  labels = [],
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -221,7 +223,19 @@ const ThreeDHoverGallery: React.FC<ThreeDHoverGalleryProps> = ({
             role="button" // Indicate that this div acts as a button
             aria-label={`Image ${index + 1} of ${images.length}`} // Accessible label
             aria-pressed={activeIndex === index ? "true" : "false"} // Indicate if the button is "pressed" (active)
-          />
+          >
+            {/* --- ADD THIS ENTIRE DIV BLOCK --- */}
+            {labels[index] && (
+              <div
+                className={`absolute inset-0 flex items-center justify-center p-4 transition-opacity duration-500 pointer-events-none ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <span className="text-white text-4xl font-extrabold tracking-wider uppercase [text-shadow:1px_1px_10px_rgba(0,0,0,1)]">
+                  {labels[index]}
+                </span>
+              </div>
+            )}
+            {/* --- END OF THE NEW DIV BLOCK --- */}
+          </div>
         ))}
       </div>
     </div>

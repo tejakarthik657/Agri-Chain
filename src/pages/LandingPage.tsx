@@ -11,22 +11,24 @@ const galleryImages = [
 
 const linkPaths = ['farmers', 'logistics', 'retailers', 'customers'];
 
+// NEW: An array for the display labels.
+const galleryLabels = ['Farmers', 'Logistics', 'Retailers', 'Customers'];
+
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleImageClick = (index: number) => {
-    const path = linkPaths[index];
+    const role = linkPaths[index];
     if (index < 3) {
-      navigate(`/login/${path}`);
+      // Pass the role in the URL for the LoginPage to read
+      navigate(`/login/${role}`);
     } else {
-      navigate(`/${path}`);
+      navigate(`/${role}`);
     }
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-screen w-screen text-center overflow-hidden">
-      {/* Geometric Background Design */}
-     
+    <div className="flex flex-col justify-center items-center h-screen w-screen text-center overflow-hidden">
       <header className="absolute top-[10vh] z-10 [text-shadow:2px_2px_8px_rgba(0,0,0,0.7)]">
         <h1 className="text-5xl font-bold mb-2 text-white">Welcome to the Agri-Chain Portal</h1>
         <p className="text-xl text-gray-300">Select your entry point below</p>
@@ -34,6 +36,7 @@ const LandingPage: React.FC = () => {
 
       <ThreeDHoverGallery
         images={galleryImages}
+        labels={galleryLabels} // <-- NEW PROP: Pass the labels here
         onImageClick={handleImageClick}
         itemWidth={10}
         itemHeight={25}
