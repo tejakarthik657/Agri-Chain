@@ -35,57 +35,41 @@ const LoginPage = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+   e.preventDefault();
+   setError('');
+   setIsLoading(true);
 
-    if (!isLogin) { // Sign Up Logic
-      if (password !== confirmPassword) {
-        setError('Passwords do not match.');
-        setIsLoading(false);
-        return;
-      }
-      try {
-        const res = await fetch('http://localhost:5000/api/users/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, role }),
-        });
-        const data = await res.json();
-        setIsLoading(false);
-        if (!res.ok) throw new Error(data.message || 'Failed to sign up.');
-        alert('Registration successful! Please log in.');
-        toggleForm();
-      } catch (err: any) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-      return;
-    }
+   // Simulate API delay
+   setTimeout(() => {
+     setIsLoading(false);
 
-    // Login Logic
-    try {
-      const res = await fetch('http://localhost:5000/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, role }),
-      });
-      const data = await res.json();
-      setIsLoading(false);
-      if (!res.ok) throw new Error(data.message || 'Failed to log in.');
-      localStorage.setItem('userToken', data.token);
+     if (!isLogin) { // Sign Up Logic
+       if (password !== confirmPassword) {
+         setError('Passwords do not match.');
+         return;
+       }
+       alert('Registration successful! Please log in.');
+       toggleForm();
+       return;
+     }
 
-      switch (role) {
-        case 'farmers': navigate('/farmers/dashboard'); break;
-        case 'logistics': navigate('/logistics/dashboard'); break;
-        case 'retailers': navigate('/retailers/dashboard'); break;
-        default: navigate('/'); break;
-      }
-    } catch (err: any) {
-      setError(err.message);
-      setIsLoading(false);
-    }
-  };
+     // Login Logic - Mock successful login
+     // In a real app, you'd validate credentials here
+     if (email && password) {
+       // Mock token storage
+       localStorage.setItem('userToken', 'mock-token');
+
+       switch (role) {
+         case 'farmers': navigate('/farmer'); break;
+         case 'logistics': navigate('/logistics'); break;
+         case 'retailers': navigate('/retailer'); break;
+         default: navigate('/'); break;
+       }
+     } else {
+       setError('Please enter valid credentials.');
+     }
+   }, 1000); // Simulate 1 second delay
+ };
 
   return (
     <div className="min-h-screen flex">

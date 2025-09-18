@@ -11,7 +11,7 @@ const CustomersPage: React.FC = () => {
         <Link to="/" className="absolute top-5 left-5 text-gray-400 hover:text-gray-100 transition-colors">
           &larr; Back to Home
         </Link>
-        
+
         <h1 className="text-5xl font-bold text-blue-400 mb-4">Customers</h1>
         <p className="text-lg text-gray-400 leading-relaxed">
           Welcome to our customer portal. Explore products, track orders, and discover the best from our network of farmers and retailers.
