@@ -44,7 +44,7 @@ export default function ManageBatches() {
 
   return (
     <div className="w-full px-10 py-8 relative">
-      <h2 className="text-2xl font-semibold mb-6">Manage My Produce Batches</h2>
+      <h2 className="text-2xl font-semibold mb-6">Market Place</h2>
 
       {/* Search Bar */}
       <div className="flex items-center mb-6">

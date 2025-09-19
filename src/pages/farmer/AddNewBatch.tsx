@@ -57,12 +57,17 @@ export default function HarvestForm() {
   const [date, setDate] = useState(null);
   const [file, setFile] = useState(null);
 
+  // ✅ popup state
+  const [popup, setPopup] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
   const handleSubmit = () => {
     if (produce && quantity && unit && date) {
-      // ✅ Show alert
-      alert("🎉 Congratulations! New batch added");
+      setPopup({
+        type: "success",
+        message: "🎉 Congratulations! New harvest batch has been added.",
+      });
 
-      // 🔄 Reset all fields
+      // reset
       setProduce("");
       setVariety("");
       setQuantity("");
@@ -70,8 +75,14 @@ export default function HarvestForm() {
       setDate(null);
       setFile(null);
     } else {
-      alert("⚠️ Please fill in all required fields.");
+      setPopup({
+        type: "error",
+        message: "⚠️ Please fill in all required fields.",
+      });
     }
+
+    // auto close after 2s
+    setTimeout(() => setPopup(null), 2000);
   };
 
   return (
@@ -153,6 +164,39 @@ export default function HarvestForm() {
           Next
         </button>
       </div>
+
+      {/* ✅ Custom Popup */}
+      {popup && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 shadow-2xl w-96 text-center relative">
+            <button
+              onClick={() => setPopup(null)}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+            <div className="flex items-center justify-center mb-4">
+              <div
+                className={`w-12 h-12 flex items-center justify-center rounded-full ${
+                  popup.type === "success" ? "bg-green-100" : "bg-red-100"
+                }`}
+              >
+                <span
+                  className={`text-2xl ${
+                    popup.type === "success" ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {popup.type === "success" ? "✓" : "⚠"}
+                </span>
+              </div>
+            </div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {popup.type === "success" ? "Changes Saved!" : "Error"}
+            </h2>
+            <p className="text-gray-600 text-sm">{popup.message}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
