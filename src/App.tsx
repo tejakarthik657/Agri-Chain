@@ -28,20 +28,21 @@ import VerifiedInventory from './pages/retailer/VerifiedInventory';
 import RetailerNotifications from './pages/retailer/Notifications';
 import RetailerMyProfile from './pages/retailer/MyProfile';
 import RetailerHelpCenter from './pages/retailer/HelpCenter';
+import Marketplace from './pages/retailer/MarketPlace'; // 👈 NEW Import
 
 // CRITICAL: This line imports the styles from src/index.css
 import './index.css'; 
 
 const App: React.FC = () => {
   return (
-    // CRITICAL: This class name "bg-navy" directly corresponds to the 'navy' key 
-    // you defined in your tailwind.config.js.
     <div className="bg-navy text-gray-200 font-sans min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login/:role" element={<LoginPage />} />
           <Route path="/customers" element={<CustomersPage />} />
+          
+          {/* Farmer Routes */}
           <Route path="/farmer" element={<MainLayout SideNavComponent={FarmerSideNav} />}>
             <Route index element={<FarmerDashboard />} />
             <Route path="dashboard" element={<FarmerDashboard />} />
@@ -51,6 +52,8 @@ const App: React.FC = () => {
             <Route path="notifications" element={<Notifications />} />
             <Route path="help" element={<HelpCenter />} />
           </Route>
+
+          {/* Logistics Routes */}
           <Route path="/logistics" element={<MainLayout SideNavComponent={LogisticsSideNav} />}>
             <Route index element={<LogisticsDashboard />} />
             <Route path="dashboard" element={<LogisticsDashboard />} />
@@ -60,11 +63,14 @@ const App: React.FC = () => {
             <Route path="notifications" element={<LogisticsNotifications />} />
             <Route path="help" element={<LogisticsHelpCenter />} />
           </Route>
+
+          {/* Retailer Routes */}
           <Route path="/retailer" element={<MainLayout SideNavComponent={RetailerSideNav} />}>
             <Route index element={<RetailerDashboard />} />
             <Route path="dashboard" element={<RetailerDashboard />} />
             <Route path="receive-verify" element={<ReceiveVerify />} />
             <Route path="verified-inventory" element={<VerifiedInventory />} />
+            <Route path="marketplace" element={<Marketplace />} /> {/* 👈 NEW Route */}
             <Route path="profile" element={<RetailerMyProfile />} />
             <Route path="notifications" element={<RetailerNotifications />} />
             <Route path="help" element={<RetailerHelpCenter />} />
