@@ -1,26 +1,27 @@
-
 import React, { useState } from "react";
 import { FiX } from "react-icons/fi";
 
 interface QrScannerPopupProps {
   onClose: () => void;
+  onScan?: (id: string) => void;
 }
 
-const QrScannerPopup: React.FC<QrScannerPopupProps> = ({ onClose }) => {
+const QrScannerPopup: React.FC<QrScannerPopupProps> = ({ onClose, onScan }) => {
   const [scanned, setScanned] = useState(false);
 
   const handleSimulateScan = () => {
     setScanned(true);
-
-    // Auto-close after 2.5s
+    if (onScan) {
+      onScan("BATCH-TMT001");
+    }
     setTimeout(() => {
       onClose();
-    }, 2500);
+    }, 2000);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-2xl w-96 p-6 relative">
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-white rounded-xl shadow-2xl w-[420px] p-6 relative">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -32,17 +33,17 @@ const QrScannerPopup: React.FC<QrScannerPopupProps> = ({ onClose }) => {
         {!scanned ? (
           <>
             {/* Title */}
-            <h2 className="text-lg font-bold mb-4 text-center">
+            <h2 className="text-lg font-bold mb-6 text-center">
               Scan Batch QR Code
             </h2>
 
-            {/* Scanner Frame */}
-            <div className="relative border-4 border-dashed border-gray-300 rounded-xl h-56 flex items-center justify-center mb-4 overflow-hidden">
-              {/* Scanner Preview Text */}
-              <p className="text-gray-400 text-sm absolute">Align QR Code Here</p>
+            {/* Scanner Box */}
+            <div className="relative border-2 border-dashed border-gray-400 rounded-lg h-56 flex items-center justify-center mb-6 overflow-hidden">
+              {/* QR Placeholder */}
+              <span className="text-gray-400 text-sm"> QR Scanner Preview</span>
 
               {/* Red scanning line */}
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-red-500 animate-scan"></div>
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-red-500 animate-scan"></div>
             </div>
 
             {/* Buttons */}
@@ -63,18 +64,18 @@ const QrScannerPopup: React.FC<QrScannerPopupProps> = ({ onClose }) => {
           </>
         ) : (
           // ✅ Success Message
-          <div className="text-center py-10">
-            <h2 className="text-lg font-bold text-green-700 mb-2">
+          <div className="text-center py-12">
+            <h2 className="text-lg font-bold text-green-700 mb-3">
               ✅ QR Code Scanned!
             </h2>
             <p className="text-gray-600">
-              Batch ID <b>B2023-09-15-001</b> recognized.
+              Batch ID <b>BATCH-TMT001</b> verified successfully.
             </p>
           </div>
         )}
       </div>
 
-      {/* Animation for scanning line */}
+      {/* Scan animation */}
       <style>
         {`
           @keyframes scan {
