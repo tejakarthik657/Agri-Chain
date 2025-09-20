@@ -98,7 +98,7 @@ const ShipmentHistory: React.FC = () => {
           </thead>
           <tbody>
             {filteredShipments.map((shipment) => (
-              <tr key={shipment.id} className="border-t">
+              <tr key={shipment.id} className="border-t border-gray-200">
                 <td className="px-4 py-3">{shipment.id}</td>
                 <td className="px-4 py-3">{shipment.produce}</td>
                 <td className="px-4 py-3">{shipment.origin}</td>
