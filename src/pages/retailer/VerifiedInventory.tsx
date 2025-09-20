@@ -145,74 +145,76 @@ const VerifiedInventory: React.FC = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto bg-white shadow rounded-lg">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-100 text-left text-sm text-gray-600">
-              <th className="px-4 py-3 border border-gray-200">Batch ID</th>
-              <th className="px-4 py-3 border border-gray-200">Produce</th>
-              <th className="px-4 py-3 border border-gray-200">Origin Farm</th>
-              <th className="px-4 py-3 border border-gray-200">Date Received</th>
-              <th className="px-4 py-3 border border-gray-200">Quantity</th>
-              <th className="px-4 py-3 border border-gray-200">Status</th>
-              <th className="px-4 py-3 border border-gray-200">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredInventory.map((item, index) => (
-              <tr
-                key={index}
-                className="border-t border-gray-200 text-sm hover:bg-gray-50 transition"
-              >
-                <td className="px-4 py-3 font-medium text-[#1c2536]-600 border border-gray-200">
-                  {item.batchId}
-                </td>
-                <td className="px-4 py-3 border border-gray-200">{item.produce}</td>
-                <td className="px-4 py-3 border border-gray-200">{item.farm}</td>
-                <td className="px-4 py-3 border border-gray-200">{item.date}</td>
-                <td className="px-4 py-3 border border-gray-200">{item.quantity}</td>
-                <td className="px-4 py-3 border border-gray-200">
-                  <span
-                    className={`px-2 py-1 text-xs font-semibold rounded
-        ${
-          item.status === "In Stock"
-            ? "text-green-600 bg-green-100"
-            : item.status === "Out of Stock"
-            ? "text-red-600 bg-red-100"
-            : item.status === "Pending Verification"
-            ? "text-yellow-600 bg-yellow-100"
-            : item.status === "Expired"
-            ? "text-gray-600 bg-gray-200"
-            : item.status === "Low Stock"
-            ? "text-orange-600 bg-orange-100"
-            : "text-gray-600 bg-gray-100"
-        }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-                <td className="px-4 py-3 border border-gray-200">
-                  <button
-                    onClick={() => setSelectedBatch(item)}
-                    className="text-[#1c2536]-600 hover:underline text-sm font-medium"
-                  >
-                    View Traceability Report
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {filteredInventory.length === 0 && (
-              <tr>
-                <td
-                  colSpan={7}
-                  className="px-4 py-6 text-center text-gray-500 italic"
-                >
-                  No records found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+      <div className="overflow-x-auto bg-white border border-gray-200 rounded-lg shadow-sm">
+  <table className="w-full text-left text-sm">
+    <thead className="bg-gray-50 text-gray-700 border-b border-gray-200">
+      <tr>
+        <th className="px-4 py-3">Batch ID</th>
+        <th className="px-4 py-3">Produce</th>
+        <th className="px-4 py-3">Origin Farm</th>
+        <th className="px-4 py-3">Date Received</th>
+        <th className="px-4 py-3">Quantity</th>
+        <th className="px-4 py-3">Status</th>
+        <th className="px-4 py-3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredInventory.map((item, index) => (
+        <tr
+          key={index}
+          className="hover:bg-gray-50 border-t border-gray-100"
+        >
+          <td className="px-4 py-3 font-medium text-[#1c2536]">
+            {item.batchId}
+          </td>
+          <td className="px-4 py-3">{item.produce}</td>
+          <td className="px-4 py-3">{item.farm}</td>
+          <td className="px-4 py-3">{item.date}</td>
+          <td className="px-4 py-3">{item.quantity}</td>
+          <td className="px-4 py-3">
+            <span
+              className={`px-2 py-1 rounded-md text-xs font-medium ${
+                item.status === "In Stock"
+                  ? "bg-green-100 text-green-700"
+                  : item.status === "Out of Stock"
+                  ? "bg-red-100 text-red-700"
+                  : item.status === "Pending Verification"
+                  ? "bg-yellow-100 text-yellow-700"
+                  : item.status === "Expired"
+                  ? "bg-gray-200 text-gray-600"
+                  : item.status === "Low Stock"
+                  ? "bg-orange-100 text-orange-700"
+                  : "bg-gray-100 text-gray-600"
+              }`}
+            >
+              {item.status}
+            </span>
+          </td>
+          <td className="px-4 py-3">
+            <button
+              onClick={() => setSelectedBatch(item)}
+              className="text-[#1c2536] hover:underline text-sm font-medium"
+            >
+              View Traceability Report
+            </button>
+          </td>
+        </tr>
+      ))}
+
+      {filteredInventory.length === 0 && (
+        <tr>
+          <td
+            colSpan={7}
+            className="px-4 py-6 text-center text-gray-500 italic"
+          >
+            No records found.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+
+
       </div>
 
       {/* Traceability Popup */}
